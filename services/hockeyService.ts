@@ -1,5 +1,5 @@
 
-import type { Team, Match, TableEntry, LeagueData, PlayerStat, NewsArticle, HistoricalSeason } from '../types';
+import type { Team, Match, TableEntry, LeagueData, PlayerStat, NewsArticle, HistoricalSeason, TeamStats } from '../types';
 
 const BJORKLOVEN_ID = 'bjorkloven';
 
@@ -171,6 +171,37 @@ const generateHistoricalData = (): HistoricalSeason[] => {
   ];
 };
 
+const calculateTeamStats = (schedule: Match[]): TeamStats => {
+  const stats: TeamStats = { wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0 };
+  const playedMatches = schedule.filter(m => m.status === 'played');
+
+  playedMatches.forEach(match => {
+    const isHomeGame = match.homeTeam.id === BJORKLOVEN_ID;
+    const homeScore = match.homeScore!;
+    const awayScore = match.awayScore!;
+
+    if (isHomeGame) {
+      stats.goalsFor += homeScore;
+      stats.goalsAgainst += awayScore;
+      if (homeScore > awayScore) {
+        stats.wins++;
+      } else {
+        stats.losses++;
+      }
+    } else {
+      stats.goalsFor += awayScore;
+      stats.goalsAgainst += homeScore;
+      if (awayScore > homeScore) {
+        stats.wins++;
+      } else {
+        stats.losses++;
+      }
+    }
+  });
+
+  return stats;
+};
+
 
 export const fetchLeagueData = async (): Promise<LeagueData> => {
   return new Promise(resolve => {
@@ -187,6 +218,7 @@ export const fetchLeagueData = async (): Promise<LeagueData> => {
       const playerStats = generatePlayerStats();
       const newsFeed = generateNewsFeed();
       const historicalData = generateHistoricalData();
+      const teamStats = calculateTeamStats(schedule);
 
       resolve({
         lastMatch,
@@ -197,6 +229,7 @@ export const fetchLeagueData = async (): Promise<LeagueData> => {
         playerStats,
         newsFeed,
         historicalData,
+        teamStats,
       });
     }, 1500); // Simulate network delay
   });

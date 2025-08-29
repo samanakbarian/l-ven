@@ -49,6 +49,13 @@ export interface HistoricalSeason {
   playoffResult: string;
 }
 
+export interface TeamStats {
+  wins: number;
+  losses: number;
+  goalsFor: number;
+  goalsAgainst: number;
+}
+
 export interface LeagueData {
   lastMatch: Match | null;
   nextMatch: Match | null;
@@ -58,6 +65,7 @@ export interface LeagueData {
   playerStats: PlayerStat[];
   newsFeed: NewsArticle[];
   historicalData: HistoricalSeason[];
+  teamStats: TeamStats;
 }
 
 export enum View {
@@ -67,4 +75,5 @@ export enum View {
   PlayerStats = 'PLAYER_STATS',
   News = 'NEWS',
   History = 'HISTORY',
+  VisualStats = 'VISUAL_STATS',
 }

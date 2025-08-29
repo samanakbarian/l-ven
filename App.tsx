@@ -7,6 +7,7 @@ import Schedule from './components/Schedule';
 import PlayerStats from './components/PlayerStats';
 import News from './components/News';
 import History from './components/History';
+import VisualStats from './components/VisualStats';
 import Loader from './components/Loader';
 import { fetchLeagueData } from './services/hockeyService';
 import type { LeagueData, View } from './types';
@@ -54,11 +55,13 @@ const App: React.FC = () => {
       case ViewEnum.Schedule:
         return <Schedule schedule={leagueData.schedule} />;
       case ViewEnum.PlayerStats:
-        return <PlayerStats playerStats={leagueData.playerStats} />;
+        return <PlayerStats playerStats={leagueData.playerStats} onViewChange={setCurrentView} />;
       case ViewEnum.News:
         return <News newsFeed={leagueData.newsFeed} />;
       case ViewEnum.History:
         return <History historicalData={leagueData.historicalData} />;
+      case ViewEnum.VisualStats:
+        return <VisualStats data={leagueData} onViewChange={setCurrentView} />;
       default:
         return <Dashboard data={leagueData} onViewChange={setCurrentView} />;
     }

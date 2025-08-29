@@ -1,20 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Löven-kollen
 
-# Run and deploy your AI Studio app
+> En snabb, enkel och mobilanpassad webbapp som ger Björklöven-supportrar den mest essentiella informationen om lagets prestationer.
 
-This contains everything you need to run your app locally.
+Löven-kollen är en fan-skapad applikation designad för att ge snabb tillgång till resultat, tabell, spelschema och statistik för ishockeylaget IF Björklöven.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1WTwQH6xSVry2ITDcv6zTUvWgM6DaxwJX
+## Funktioner
 
-## Run Locally
+- **Översikt (Dashboard):** Se snabbt resultat från senaste matchen, information om nästa match och lagets nuvarande placering i tabellen.
+- **Tabell:** En komplett och aktuell serietabell för HockeyAllsvenskan.
+- **Spelschema:** Bläddra bland kommande och redan spelade matcher för säsongen.
+- **Spelarstatistik:** Detaljerad poängliga för alla spelare i laget (mål, assist, poäng).
+- **Nyhetsflöde:** De senaste nyheterna och artiklarna relaterade till laget.
+- **Historik:** En överblick över lagets slutplaceringar och slutspelsresultat från tidigare säsonger.
+- **Visuell Statistik:** Interaktiva och lättförståeliga diagram som visualiserar både lagets och enskilda spelares prestationer.
+- **Responsiv Design:** Optimerad för en sömlös upplevelse på både mobil och dator.
 
-**Prerequisites:**  Node.js
+## Teknologier
 
+Projektet är byggt med moderna webbteknologier för att säkerställa en snabb och pålitlig upplevelse.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **React:** Ett JavaScript-bibliotek för att bygga användargränssnitt.
+- **TypeScript:** Ett superset av JavaScript som lägger till statisk typning för ökad kodkvalitet.
+- **Tailwind CSS:** Ett "utility-first" CSS-ramverk för att snabbt designa moderna och responsiva layouter.
+
+## Datakälla
+
+För närvarande används **simulerad data** för demonstrationsändamål. All information om matcher, tabeller och statistik genereras dynamiskt i klienten för att visa applikationens fulla funktionalitet.
