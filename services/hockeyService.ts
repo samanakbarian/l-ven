@@ -1,17 +1,16 @@
-
 import type { Team, Match, TableEntry, LeagueData, PlayerStat, NewsArticle, HistoricalSeason, TeamStats } from '../types';
 
 const BJORKLOVEN_ID = 'bjorkloven';
 
 const teams: Team[] = [
-  { id: 'bjorkloven', name: 'IF Björklöven', logoUrl: 'https://www.bjorkloven.com/images/bjorkloven/logo-bjorkloven-350x350.svg' },
-  { id: 'aik', name: 'AIK', logoUrl: 'https://www.aikhockey.se/images/aik-hockey/logo-aik-hockey-350x350.svg' },
-  { id: 'brynas', name: 'Brynäs IF', logoUrl: 'https://www.brynas.se/images/brynas/logo-brynas-if-350x350.svg' },
-  { id: 'djurgarden', name: 'Djurgårdens IF', logoUrl: 'https://www.difhockey.se/images/djurgardens-if/logo-djurgardens-if-hockey-350x350.svg' },
-  { id: 'sodertalje', name: 'Södertälje SK', logoUrl: 'https://www.sodertaljesk.se/images/sodertalje-sk/logo-sodertalje-sk-350x350.svg' },
-  { id: 'karlskoga', name: 'BIK Karlskoga', logoUrl: 'https://www.bikkarlskoga.se/images/bik-karlskoga/logo-bik-karlskoga-350x350.svg' },
-  { id: 'vasteras', name: 'Västerås IK', logoUrl: 'https://www.vik.se/images/vasteras-ik/logo-vasteras-ik-350x350.svg' },
-  { id: 'mora', name: 'Mora IK', logoUrl: 'https://www.moraik.se/images/mora-ik/logo-mora-ik-350x350.svg' },
+  { id: 'bjorkloven', name: 'IF Björklöven', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/9/91/IF_Bj%C3%B6rkl%C3%B6ven_logo.svg' },
+  { id: 'aik', name: 'AIK', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/1/12/AIK_Hockey_logo.svg' },
+  { id: 'brynas', name: 'Brynäs IF', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/4/41/Bryn%C3%A4s_IF_logo.svg' },
+  { id: 'djurgarden', name: 'Djurgårdens IF', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/8/87/Djurg%C3%A5rdens_IF_Hockey_logo.svg' },
+  { id: 'sodertalje', name: 'Södertälje SK', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e5/S%C3%B6dert%C3%A4lje_SK_logo.svg' },
+  { id: 'karlskoga', name: 'BIK Karlskoga', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/d/d4/BIK_Karlskoga_logo.svg' },
+  { id: 'vasteras', name: 'Västerås IK', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/9/9f/V%C3%A4ster%C3%A5s_IK_logo.svg' },
+  { id: 'mora', name: 'Mora IK', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/b/b3/Mora_IK_logo.svg' },
 ];
 
 const getTeamById = (id: string): Team => teams.find(t => t.id === id)!;

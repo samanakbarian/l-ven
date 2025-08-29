@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { View } from '../types';
 import { View as ViewEnum } from '../types';
@@ -37,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ currentView, onViewChange }) => {
     <header className="bg-brand-bg sticky top-0 z-10 border-b border-brand-border">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <img src="https://www.bjorkloven.com/images/bjorkloven/logo-bjorkloven-350x350.svg" alt="Björklöven Logo" className="h-10 w-10"/>
+          <img src="https://upload.wikimedia.org/wikipedia/en/9/91/IF_Bj%C3%B6rkl%C3%B6ven_logo.svg" alt="Björklöven Logo" className="h-10 w-10 object-contain"/>
           <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">
             Löven-kollen
           </h1>
