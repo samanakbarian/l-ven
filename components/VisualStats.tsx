@@ -29,15 +29,20 @@ const VisualStats: React.FC<VisualStatsProps> = ({ data, onViewChange }) => {
   const [selectedPlayerId, setSelectedPlayerId] = useState<string>(playerStats[0]?.id || '');
 
   const selectedPlayer = playerStats.find(p => p.id === selectedPlayerId);
-  const maxPoints = Math.max(...playerStats.map(p => p.points), 1); // Avoid division by zero
+
+  // Calculate max values for scaling the bars
+  const maxPoints = Math.max(...playerStats.map(p => p.points), 1);
+  const maxGoals = Math.max(...playerStats.map(p => p.goals), 1);
+  const maxAssists = Math.max(...playerStats.map(p => p.assists), 1);
+  const maxShots = Math.max(...playerStats.map(p => p.shotsOnGoal), 1);
+  const maxPim = Math.max(...playerStats.map(p => p.penaltyMinutes), 1);
+  const maxHits = Math.max(...playerStats.map(p => p.hits), 1);
 
   const totalMatches = teamStats.wins + teamStats.losses;
   const winPercentage = totalMatches > 0 ? (teamStats.wins / totalMatches) * 100 : 0;
-  const lossPercentage = totalMatches > 0 ? (teamStats.losses / totalMatches) * 100 : 0;
   
   const totalGoals = teamStats.goalsFor + teamStats.goalsAgainst;
   const goalsForPercentage = totalGoals > 0 ? (teamStats.goalsFor / totalGoals) * 100 : 0;
-  const goalsAgainstPercentage = totalGoals > 0 ? (teamStats.goalsAgainst / totalGoals) * 100 : 0;
 
 
   return (
@@ -99,10 +104,13 @@ const VisualStats: React.FC<VisualStatsProps> = ({ data, onViewChange }) => {
 
         {/* Player Stats Bars */}
         {selectedPlayer && (
-            <div className="space-y-4">
-                <StatBar value={selectedPlayer.goals} total={maxPoints} colorClass="bg-green-500" label="Mål" />
-                <StatBar value={selectedPlayer.assists} total={maxPoints} colorClass="bg-blue-500" label="Assists" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <StatBar value={selectedPlayer.goals} total={maxGoals} colorClass="bg-green-500" label="Mål" />
+                <StatBar value={selectedPlayer.assists} total={maxAssists} colorClass="bg-blue-500" label="Assists" />
                 <StatBar value={selectedPlayer.points} total={maxPoints} colorClass="bg-yellow-500" label="Poäng" />
+                <StatBar value={selectedPlayer.shotsOnGoal} total={maxShots} colorClass="bg-purple-500" label="Skott på mål (SOG)" />
+                <StatBar value={selectedPlayer.penaltyMinutes} total={maxPim} colorClass="bg-red-500" label="Utvisningsminuter (PIM)" />
+                <StatBar value={selectedPlayer.hits} total={maxHits} colorClass="bg-orange-500" label="Tacklingar" />
             </div>
         )}
       </div>

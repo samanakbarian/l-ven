@@ -27,12 +27,23 @@ export interface PlayerStat {
   id: string;
   name: string;
   number: number;
-  position: 'G' | 'D' | 'F'; // Goalie, Defense, Forward
+  position: 'G' | 'LD' | 'RD' | 'C' | 'LW' | 'RW';
+  line: number | null;
   gamesPlayed: number;
   goals: number;
   assists: number;
   points: number;
+  plusMinus: number;
+  penaltyMinutes: number;
+  powerPlayGoals: number;
+  shotsOnGoal: number;
+  timeOnIce: string; // "MM:SS"
+  hits: number;
+  faceoffsWon: number;
+  faceoffsLost: number;
+  faceoffPercentage: number;
 }
+
 
 export interface NewsArticle {
   id: string;

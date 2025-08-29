@@ -117,21 +117,30 @@ const generateTable = (schedule: Match[]): TableEntry[] => {
 };
 
 const generatePlayerStats = (): PlayerStat[] => {
-  // FIX: Explicitly typing the array as PlayerStat[] ensures the `position`
-  // property is correctly typed as 'G' | 'D' | 'F' instead of the wider `string` type.
-  const stats: PlayerStat[] = [
-    { id: 'p5', name: 'Fredric Weigel', number: 8, position: 'F', gamesPlayed: 3, goals: 1, assists: 4, points: 5 },
-    { id: 'p4', name: 'Scott Pooley', number: 10, position: 'F', gamesPlayed: 3, goals: 3, assists: 1, points: 4 },
-    { id: 'p6', name: 'Nick Schilkey', number: 22, position: 'F', gamesPlayed: 3, goals: 2, assists: 2, points: 4 },
-    { id: 'p2', name: 'Alexander Deilert', number: 4, position: 'D', gamesPlayed: 3, goals: 1, assists: 2, points: 3 },
-    { id: 'p7', name: 'Gerry Fitzgerald', number: 19, position: 'F', gamesPlayed: 2, goals: 1, assists: 1, points: 2 },
-    { id: 'p1', name: 'Joona Voutilainen', number: 35, position: 'G', gamesPlayed: 3, goals: 0, assists: 1, points: 1 },
-    { id: 'p3', name: 'Daniel Rahimi', number: 44, position: 'D', gamesPlayed: 3, goals: 0, assists: 1, points: 1 },
-    { id: 'p9', name: 'Jacob Olofsson', number: 9, position: 'F', gamesPlayed: 3, goals: 1, assists: 0, points: 1 },
-    { id: 'p8', name: 'Kim Karlsson', number: 28, position: 'D', gamesPlayed: 3, goals: 0, assists: 0, points: 0 },
-    { id: 'p10', name: 'Alex Hutchings', number: 13, position: 'F', gamesPlayed: 1, goals: 0, assists: 0, points: 0 },
+  const stats: Omit<PlayerStat, 'points' | 'faceoffPercentage'>[] = [
+    { id: 'p1', name: 'Jesper Lindgren', number: 5, position: 'LD', line: 1, gamesPlayed: 3, goals: 0, assists: 2, plusMinus: 2, penaltyMinutes: 0, powerPlayGoals: 0, shotsOnGoal: 2, timeOnIce: '18:48', hits: 0, faceoffsWon: 0, faceoffsLost: 0 },
+    { id: 'p2', name: 'Fredric Weigel', number: 8, position: 'C', line: 1, gamesPlayed: 3, goals: 1, assists: 4, plusMinus: 3, penaltyMinutes: 4, powerPlayGoals: 0, shotsOnGoal: 8, timeOnIce: '17:30', hits: 2, faceoffsWon: 25, faceoffsLost: 20 },
+    { id: 'p3', name: 'Scott Pooley', number: 10, position: 'RW', line: 1, gamesPlayed: 3, goals: 3, assists: 1, plusMinus: 2, penaltyMinutes: 0, powerPlayGoals: 1, shotsOnGoal: 12, timeOnIce: '16:50', hits: 4, faceoffsWon: 2, faceoffsLost: 3 },
+    { id: 'p4', name: 'Nick Schilkey', number: 22, position: 'LW', line: 1, gamesPlayed: 3, goals: 2, assists: 2, plusMinus: 2, penaltyMinutes: 2, powerPlayGoals: 1, shotsOnGoal: 9, timeOnIce: '17:10', hits: 3, faceoffsWon: 5, faceoffsLost: 4 },
+    { id: 'p5', name: 'Alexander Deilert', number: 4, position: 'RD', line: 1, gamesPlayed: 3, goals: 1, assists: 2, plusMinus: 1, penaltyMinutes: 6, powerPlayGoals: 0, shotsOnGoal: 5, timeOnIce: '19:02', hits: 5, faceoffsWon: 0, faceoffsLost: 0 },
+    { id: 'p6', name: 'Gerry Fitzgerald', number: 19, position: 'C', line: 2, gamesPlayed: 2, goals: 1, assists: 1, plusMinus: 0, penaltyMinutes: 0, powerPlayGoals: 0, shotsOnGoal: 4, timeOnIce: '15:15', hits: 1, faceoffsWon: 15, faceoffsLost: 12 },
+    { id: 'p7', name: 'Daniel Rahimi', number: 44, position: 'LD', line: 2, gamesPlayed: 3, goals: 0, assists: 1, plusMinus: -1, penaltyMinutes: 12, powerPlayGoals: 0, shotsOnGoal: 3, timeOnIce: '20:10', hits: 10, faceoffsWon: 0, faceoffsLost: 0 },
+    { id: 'p8', name: 'Jacob Olofsson', number: 9, position: 'C', line: 3, gamesPlayed: 3, goals: 1, assists: 0, plusMinus: 1, penaltyMinutes: 2, powerPlayGoals: 0, shotsOnGoal: 6, timeOnIce: '14:00', hits: 2, faceoffsWon: 18, faceoffsLost: 15 },
+    { id: 'p9', name: 'Kim Karlsson', number: 28, position: 'RD', line: 2, gamesPlayed: 3, goals: 0, assists: 0, plusMinus: -2, penaltyMinutes: 4, powerPlayGoals: 0, shotsOnGoal: 1, timeOnIce: '18:30', hits: 8, faceoffsWon: 0, faceoffsLost: 0 },
+    { id: 'p10', name: 'Alex Hutchings', number: 13, position: 'LW', line: 2, gamesPlayed: 1, goals: 0, assists: 0, plusMinus: 0, penaltyMinutes: 0, powerPlayGoals: 0, shotsOnGoal: 2, timeOnIce: '12:30', hits: 1, faceoffsWon: 1, faceoffsLost: 2 },
+    { id: 'p11', name: 'Joona Voutilainen', number: 35, position: 'G', line: null, gamesPlayed: 3, goals: 0, assists: 1, plusMinus: 0, penaltyMinutes: 0, powerPlayGoals: 0, shotsOnGoal: 0, timeOnIce: '60:00', hits: 0, faceoffsWon: 0, faceoffsLost: 0 },
   ];
-  return stats.sort((a, b) => b.points - a.points || b.goals - a.goals);
+
+  const fullStats: PlayerStat[] = stats.map(p => {
+    const totalFaceoffs = p.faceoffsWon + p.faceoffsLost;
+    return {
+      ...p,
+      points: p.goals + p.assists,
+      faceoffPercentage: totalFaceoffs > 0 ? parseFloat(((p.faceoffsWon / totalFaceoffs) * 100).toFixed(1)) : 0,
+    };
+  });
+
+  return fullStats.sort((a, b) => b.points - a.points || b.goals - a.goals);
 };
 
 const generateNewsFeed = (): NewsArticle[] => {
