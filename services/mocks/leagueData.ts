@@ -1,4 +1,15 @@
-import type { Team, Match, TableEntry, LeagueData, PlayerStat, NewsArticle, HistoricalSeason, TeamStats, GameGoalieStat, GamePlayerStat } from '../types';
+import type {
+  Team,
+  Match,
+  TableEntry,
+  LeagueData,
+  PlayerStat,
+  NewsArticle,
+  HistoricalSeason,
+  TeamStats,
+  GameGoalieStat,
+  GamePlayerStat,
+} from '../../types';
 
 const BJORKLOVEN_ID = 'bjorkloven';
 
@@ -252,7 +263,7 @@ const calculateTeamStats = (schedule: Match[]): TeamStats => {
 };
 
 
-export const fetchLeagueData = async (): Promise<LeagueData> => {
+export const getMockLeagueData = async (): Promise<LeagueData> => {
   return new Promise(resolve => {
     setTimeout(() => {
       const schedule = generateSchedule();
