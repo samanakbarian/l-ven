@@ -5,6 +5,37 @@ export interface Team {
   logoUrl: string;
 }
 
+export interface GameGoalieStat {
+  name: string;
+  number: number;
+  goalsAgainst: number;
+  shotsOnGoalAgainst: number;
+  shotsOnPowerPlayAgainst: number;
+  saves: number;
+  savePercentage: number;
+}
+
+export interface GamePlayerStat {
+  name: string;
+  number: number;
+  position: string;
+  line: number | null;
+  goals: number;
+  assists: number;
+  powerPlayGoals: number;
+  shotsWide: number;
+  penaltyMinutes: number;
+  shotsOnGoal: number;
+  powerPlayShotsOnGoal: number;
+  plusMinus: number;
+  timeOnIce: string;
+  hits: number;
+  faceoffsWon: number;
+  faceoffsLost: number;
+  faceoffPercentage: number;
+}
+
+
 export interface Match {
   id: string;
   homeTeam: Team;
@@ -13,6 +44,8 @@ export interface Match {
   awayScore: number | null;
   date: string;
   status: 'played' | 'upcoming';
+  playerStats?: GamePlayerStat[];
+  goalieStats?: GameGoalieStat[];
 }
 
 export interface TableEntry {

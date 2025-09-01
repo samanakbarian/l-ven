@@ -1,4 +1,4 @@
-import type { Team, Match, TableEntry, LeagueData, PlayerStat, NewsArticle, HistoricalSeason, TeamStats } from '../types';
+import type { Team, Match, TableEntry, LeagueData, PlayerStat, NewsArticle, HistoricalSeason, TeamStats, GameGoalieStat, GamePlayerStat } from '../types';
 
 const BJORKLOVEN_ID = 'bjorkloven';
 
@@ -14,6 +14,35 @@ const teams: Team[] = [
 ];
 
 const getTeamById = (id: string): Team => teams.find(t => t.id === id)!;
+
+// Example per-game stats from user
+const gameGoalieStats: GameGoalieStat[] = [
+  { name: 'Joona Voutilainen', number: 30, goalsAgainst: 0, shotsOnGoalAgainst: 0, shotsOnPowerPlayAgainst: 0, saves: 0, savePercentage: 0 },
+  { name: 'Melker Thelin', number: 35, goalsAgainst: 4, shotsOnGoalAgainst: 31, shotsOnPowerPlayAgainst: 15, saves: 27, savePercentage: 87.1 },
+];
+
+const gamePlayerStats: GamePlayerStat[] = [
+  { name: 'Jesper Lindgren', number: 5, position: 'LD', line: 1, goals: 0, assists: 2, powerPlayGoals: 0, shotsWide: 1, penaltyMinutes: 0, shotsOnGoal: 2, powerPlayShotsOnGoal: 0, plusMinus: 2, timeOnIce: '18:48', hits: 0, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Marcus Nilsson', number: 10, position: 'RW', line: 1, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 1, penaltyMinutes: 0, shotsOnGoal: 2, powerPlayShotsOnGoal: 1, plusMinus: -1, timeOnIce: '17:05', hits: 1, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Mathew Maione', number: 28, position: 'RD', line: 1, goals: 0, assists: 1, powerPlayGoals: 0, shotsWide: 1, penaltyMinutes: 0, shotsOnGoal: 2, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '26:53', hits: 1, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Jacob Olofsson', number: 32, position: 'CE', line: 1, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 1, penaltyMinutes: 0, shotsOnGoal: 1, powerPlayShotsOnGoal: 0, plusMinus: -2, timeOnIce: '18:45', hits: 2, faceoffsWon: 9, faceoffsLost: 14, faceoffPercentage: 39 },
+  { name: 'Fredrik Forsberg', number: 56, position: 'LW', line: 1, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 1, penaltyMinutes: 0, shotsOnGoal: 5, powerPlayShotsOnGoal: 0, plusMinus: -1, timeOnIce: '18:22', hits: 0, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Axel Ottosson', number: 18, position: 'CE', line: 2, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 1, penaltyMinutes: 0, shotsOnGoal: 0, powerPlayShotsOnGoal: 0, plusMinus: 1, timeOnIce: '17:22', hits: 1, faceoffsWon: 8, faceoffsLost: 6, faceoffPercentage: 57 },
+  { name: 'Linus Cronholm', number: 24, position: 'RD', line: 2, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 0, shotsOnGoal: 0, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '23:51', hits: 2, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Tim Theocharidis', number: 59, position: 'LD', line: 2, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 4, penaltyMinutes: 4, shotsOnGoal: 1, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '20:32', hits: 0, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Gustav Possler', number: 71, position: 'RW', line: 2, goals: 1, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 0, shotsOnGoal: 2, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '25:20', hits: 0, faceoffsWon: 1, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Daniel Viksten', number: 86, position: 'LW', line: 2, goals: 0, assists: 1, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 2, shotsOnGoal: 2, powerPlayShotsOnGoal: 0, plusMinus: 1, timeOnIce: '18:35', hits: 1, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 100 },
+  { name: 'Mattias Nörstebö', number: 15, position: 'RD', line: 3, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 0, shotsOnGoal: 2, powerPlayShotsOnGoal: 0, plusMinus: -1, timeOnIce: '27:17', hits: 1, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Felix Girard', number: 26, position: 'CE', line: 3, goals: 1, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 0, shotsOnGoal: 1, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '13:48', hits: 1, faceoffsWon: 13, faceoffsLost: 7, faceoffPercentage: 65 },
+  { name: 'Joel Mustonen', number: 39, position: 'RW', line: 3, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 1, penaltyMinutes: 0, shotsOnGoal: 1, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '18:52', hits: 0, faceoffsWon: 1, faceoffsLost: 5, faceoffPercentage: 16 },
+  { name: 'Maxime Fortier', number: 41, position: 'LW', line: 3, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 2, penaltyMinutes: 0, shotsOnGoal: 3, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '17:51', hits: 0, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Matthew Cairns', number: 57, position: 'LD', line: 3, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 1, penaltyMinutes: 2, shotsOnGoal: 1, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '20:22', hits: 0, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Lucas Lagerberg', number: 8, position: 'LD', line: 4, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 0, shotsOnGoal: 0, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '00:00', hits: 0, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Bruno Osmanis', number: 21, position: 'LW', line: 4, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 0, shotsOnGoal: 0, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '03:50', hits: 0, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Erik Andersson', number: 38, position: 'CE', line: 4, goals: 1, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 2, shotsOnGoal: 2, powerPlayShotsOnGoal: 0, plusMinus: 1, timeOnIce: '14:07', hits: 1, faceoffsWon: 2, faceoffsLost: 3, faceoffPercentage: 40 },
+  { name: 'Martin Fransson', number: 44, position: 'RD', line: 4, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 2, shotsOnGoal: 0, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '00:00', hits: 0, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+  { name: 'Oscar Tellström', number: 91, position: 'RW', line: 4, goals: 0, assists: 0, powerPlayGoals: 0, shotsWide: 0, penaltyMinutes: 2, shotsOnGoal: 1, powerPlayShotsOnGoal: 0, plusMinus: 0, timeOnIce: '15:02', hits: 2, faceoffsWon: 0, faceoffsLost: 0, faceoffPercentage: 0 },
+];
 
 const generateSchedule = (): Match[] => {
   const bjorkloven = getTeamById(BJORKLOVEN_ID);
@@ -41,6 +70,18 @@ const generateSchedule = (): Match[] => {
       status: 'played'
     });
   }
+
+  // Attach detailed stats to the most recent played game
+  const playedMatches = schedule.filter(m => m.status === 'played').sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  if (playedMatches.length > 0) {
+      const lastPlayedMatchId = playedMatches[0].id;
+      const matchIndexInSchedule = schedule.findIndex(m => m.id === lastPlayedMatchId);
+      if (matchIndexInSchedule !== -1) {
+          schedule[matchIndexInSchedule].playerStats = gamePlayerStats;
+          schedule[matchIndexInSchedule].goalieStats = gameGoalieStats;
+      }
+  }
+
 
   // 3 upcoming matches
   for (let i = 0; i < 4; i++) {
@@ -219,7 +260,7 @@ export const fetchLeagueData = async (): Promise<LeagueData> => {
       const upcomingMatches = schedule.filter(m => m.status === 'upcoming');
       const table = generateTable(schedule);
       
-      const lastMatch = playedMatches.length > 0 ? playedMatches[playedMatches.length - 1] : null;
+      const lastMatch = playedMatches.length > 0 ? playedMatches.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0] : null;
       const nextMatch = upcomingMatches.length > 0 ? upcomingMatches[0] : null;
       const bjorklovenTableEntry = table.find(entry => entry.team.id === BJORKLOVEN_ID) || null;
 
