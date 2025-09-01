@@ -294,3 +294,46 @@ export const getMockLeagueData = async (): Promise<LeagueData> => {
     }, 1500); // Simulate network delay
   });
 };
+
+// Export the mock data directly for synchronous access
+export const mockLeagueData: LeagueData = {
+  lastMatch: null,
+  nextMatch: null,
+  schedule: [],
+  table: [],
+  bjorklovenTableEntry: null,
+  playerStats: [],
+  newsFeed: [],
+  historicalData: [],
+  teamStats: { wins: 0, losses: 0, goalsFor: 0, goalsAgainst: 0 }
+};
+
+// Initialize the mock data
+const initializeMockData = () => {
+  const schedule = generateSchedule();
+  const playedMatches = schedule.filter(m => m.status === 'played');
+  const upcomingMatches = schedule.filter(m => m.status === 'upcoming');
+  const table = generateTable(schedule);
+  
+  const lastMatch = playedMatches.length > 0 ? playedMatches.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0] : null;
+  const nextMatch = upcomingMatches.length > 0 ? upcomingMatches[0] : null;
+  const bjorklovenTableEntry = table.find(entry => entry.team.id === BJORKLOVEN_ID) || null;
+
+  const playerStats = generatePlayerStats();
+  const newsFeed = generateNewsFeed();
+  const historicalData = generateHistoricalData();
+  const teamStats = calculateTeamStats(schedule);
+
+  mockLeagueData.lastMatch = lastMatch;
+  mockLeagueData.nextMatch = nextMatch;
+  mockLeagueData.schedule = schedule;
+  mockLeagueData.table = table;
+  mockLeagueData.bjorklovenTableEntry = bjorklovenTableEntry;
+  mockLeagueData.playerStats = playerStats;
+  mockLeagueData.newsFeed = newsFeed;
+  mockLeagueData.historicalData = historicalData;
+  mockLeagueData.teamStats = teamStats;
+};
+
+// Initialize the mock data when the module is loaded
+initializeMockData();
