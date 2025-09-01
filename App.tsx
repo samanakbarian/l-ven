@@ -10,7 +10,7 @@ import History from './components/History';
 import VisualStats from './components/VisualStats';
 import GameStats from './components/GameStats';
 import Loader from './components/Loader';
-import { fetchLeagueData } from './services/hockeyService';
+import { getLeagueData } from './services/apiClient';
 import type { LeagueData, View } from './types';
 import { View as ViewEnum } from './types';
 
@@ -26,7 +26,7 @@ const App: React.FC = () => {
     const loadData = async () => {
       try {
         setIsLoading(true);
-        const data = await fetchLeagueData();
+        const data = await getLeagueData();
         setLeagueData(data);
       } catch (err) {
         setError('Kunde inte ladda data. Försök igen senare.');
